@@ -3,8 +3,8 @@
 
 ### ************** NEW SPEED IMPROVEMENT!! SEE BELOW. ******************
 
-This library is designed to be used with the TeensyRa8876-GFX-Common library and can be found here:
-- https://github.com/wwatson4506/TeensyRA8876-GFX-Common
+This library is designed to be used with the TeensyRa8889-GFX-Common library and can be found here:
+- https://github.com/wwatson4506/TeensyRA8889-GFX-Common
 
 This driver also uses a new FlexIO library found here:
 - https://github.com/KurtE/FlexIO_t4/tree/master
