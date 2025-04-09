@@ -1,5 +1,5 @@
-# TeensyRA8876-8080
-## A RA8876 8080 parallel driver library for Teensy boards and variants.
+# TeensyRA8889-8080
+## A RA8889 8080 parallel driver library for Teensy boards and variants.
 
 ### ************** NEW SPEED IMPROVEMENT!! SEE BELOW. ******************
 
@@ -11,7 +11,7 @@ This driver also uses a new FlexIO library found here:
 
 Communication with the Teensy is accomplished using the 8080 parallel mode of FlexIO. 
 
-![https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg](https://github.com/wwatson4506/TeensyRA8876-8080/blob/main/extras/MEM_Transfer.jpg)
+![https://github.com/wwatson4506/TeensyRA8889-8080/blob/main/extras/MEM_Transfer.jpg](https://github.com/wwatson4506/TeensyRA8889-8080/blob/main/extras/MEM_Transfer.jpg)
 
 ## TOUCH SCREEN
 The capacitive touch controller now used on the ER-TFTM101-1 is the Goodix GT9271. I2C communication is used with the GT9371 controller.
@@ -21,7 +21,7 @@ A minimal driver adapted from the arduino-goodix library can be found here:
 
 ## LIBRARY INSTALLATION
 1. Unzip this library to the **Arduino/libraries** folder.
-2. Unzip **TeensyRA8876-GFX-Common**  library to the **Arduino/libraries** folder.
+2. Unzip **TeensyRA8889-GFX-Common**  library to the **Arduino/libraries** folder.
 3. Download **ILI9341_fonts** [https://github.com/wwatson4506/ILI9341_fonts](https://github.com/wwatson4506/ILI9341_fonts) and install into the **Arduino/libraries** folder.
 ***
 
@@ -32,7 +32,7 @@ A minimal driver adapted from the arduino-goodix library can be found here:
 
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
 
-### Teensy 4.1 <--------------> RA8876
+### Teensy 4.1 <--------------> RA8889  NOTE: T41 does not play well with RA8889 using jumper wires for some reason. Need wire length to real short.
 ```
       PIN                      PIN
 
@@ -74,7 +74,7 @@ Teensy 4.1               GT9371
 - 24   ---------------> CPT_SCL  35
 ```
 ***
-### Dev Board 5                 RA8876
+### Dev Board 5                 RA8889
 
 ```
       PIN                      PIN
@@ -131,12 +131,12 @@ Defaults to normal mode...
 Both 8080 Parallel and SPI libraries have config file.
 Config file for FlexIO 8080 parallel:
 ```
-/* RA8876_Config-8080.h
+/* RA8889_Config-8080.h
  A file to place user defines and configs.
 */
 
-#ifndef RA8876_CONFIG_H
-#define RA8876_CONFIG_H
+#ifndef RA8889_CONFIG_H
+#define RA8889_CONFIG_H
 
 //********************* NEW OPTION ****************************
 // Uncomment next line to increase SDRAM and CORE clock speeds.
@@ -144,7 +144,7 @@ Config file for FlexIO 8080 parallel:
 //*************************************************************
 
 // Select 8 or 16 for your bus width.
-#define RA8876_8080_BUS_WIDTH 8
+#define RA8889_8080_BUS_WIDTH 8
 
 // Set the bus speed in megahertz. 
 #define BUS_SPEED 20 //Available settings 2,4,8,12,20,24,30,40,60,120
@@ -158,30 +158,30 @@ Config file for FlexIO 8080 parallel:
 
 #if defined(ARDUINO_TEENSY41)
 // Hardware defines T4.1
-#define RA8876_8080_CS 11
-#define RA8876_8080_DC 13
-#define RA8876_8080_RESET 12
-// Example usage in sketch: RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
+#define RA8889_8080_CS 11
+#define RA8889_8080_DC 13
+#define RA8889_8080_RESET 12
+// Example usage in sketch: RA8889_t41_p tft = RA8889_t41_p(RA8889_8080_DC,RA8889_8080_CS,RA8889_8080_RESET);
 
-#define RA8876_D0 19
-#define RA8876_RD 37    // FlexIO3:19: RD
-#define RA8876_WR 36    // FlexIO3:18: WR
+#define RA8889_D0 19
+#define RA8889_RD 37    // FlexIO3:19: RD
+#define RA8889_WR 36    // FlexIO3:18: WR
 
 #elif defined(ARDUINO_TEENSY_DEVBRD5)
 // Hardware defines DB5 board and Kurt's shield
-#define RA8876_8080_CS 53
-#define RA8876_8080_RESET 54
-#define RA8876_8080_DC 55
-#define RA8876_D0 40
+#define RA8889_8080_CS 53
+#define RA8889_8080_RESET 54
+#define RA8889_8080_DC 55
+#define RA8889_D0 40
 #define BACKLITE 29
-#define RA8876_RD 52    // FlexIO3:10: RD
-#define RA8876_WR 56    // FlexIO3:11 WR
+#define RA8889_RD 52    // FlexIO3:10: RD
+#define RA8889_WR 56    // FlexIO3:11 WR
 #endif
 
 // Uncomment to use FT5206 touch. (Not used on the ER-TFTM1010-1)
 #define USE_FT5206_TOUCH 
 
-#endif // RA8876_CONFIG_H
+#endif // RA8889_CONFIG_H
 ```
 
 ### MINIMAL SKETCH EXAMPLE
@@ -189,22 +189,22 @@ Config file for FlexIO 8080 parallel:
 // sketch.ino
 
 #include "Arduino.h"
-#include "RA8876_Config_8080.h" // Global config file.
-#include <RA8876_t41_p.h>
+#include "RA8889_Config_8080.h" // Global config file.
+#include <RA8889_t41_p.h>
 
-// RA8876_8080_DC, RA8876_8080_CS and RA8876_8080_RESET are defined in
-// src/RA8876_Config_8080.h.
-RA8876_t41_p tft = RA8876_t41_p(RA8876_8080_DC,RA8876_8080_CS,RA8876_8080_RESET);
+// RA8889_8080_DC, RA8889_8080_CS and RA8889_8080_RESET are defined in
+// src/RA8889_Config_8080.h.
+RA8889_t41_p tft = RA8889_t41_p(RA8889_8080_DC,RA8889_8080_CS,RA8889_8080_RESET);
 
 void setup() {
   Serial.begin(115200);
   while (!Serial && millis() < 3000) {} //wait for Serial Monitor (3 seconds).
 
   // Set 8/16bit bus mode. Default is 8bit bus mode. Must be called before tft.begin(BUS_SPEED).
-  tft.setBusWidth(RA8876_8080_BUS_WIDTH); // RA8876_8080_BUS_WIDTH is defined in
-                                          // src/RA8876_Config_8080.h. 
-  tft.begin(BUS_SPEED); // RA8876_8080_BUS_WIDTH is defined in
-                        // src/RA8876_Config_8080.h. Default is 20MHz. 
+  tft.setBusWidth(RA8889_8080_BUS_WIDTH); // RA8889_8080_BUS_WIDTH is defined in
+                                          // src/RA8889_Config_8080.h. 
+  tft.begin(BUS_SPEED); // RA8889_8080_BUS_WIDTH is defined in
+                        // src/RA8889_Config_8080.h. Default is 20MHz. 
   ... // Rest of user setup code.
 }
 
@@ -238,17 +238,17 @@ Example sketches can be found in the TeensyRA8876-8080 and TeensyRA8876-SPI exam
 - ILI_ADA_FontTest4 -------> Demonstrates usage of ILI9341 and Adafruit fonts on the RA8876.
 - MemoryTransfer -----------> Shows usage of many BTE (Block Transfer Engine) functions.
 - pipTest ------------------------> Example of PIP (Picture In Picture) usage.
-- RA8876_pictureEmbed --> Displays 16Bit color images. Also demonstrates rotation.
-- RA8876Rotate --------------> Also demontrates use of rotation.
+- RA8889_pictureEmbed --> Displays 16Bit color images. Also demonstrates rotation.
+- RA8889Rotate --------------> Also demontrates use of rotation.
 - scroll ---------------------------> Simple demonstration of scrolliing screen up and down.
 - TestCases --------------------> Folder containing various sketches used for testing.
   - DMA_ASYNC_testing -------> Tests usage of DMA and ASYNC together.
   - DMA_Testing_2 ---------------> More DMA tests using SDRAM on the Dev Board 5. Not compatible with  Teensy 4.0, 4.0 or MicroMod.
-  - Kurts_RA8876_p_FB_and_clip_tests --> Frame buffer and clip tests.
-  - RA8876p_readPixels ---------> Tests color bar write and read accuracy with rotation.
+  - Kurts_RA8889_p_FB_and_clip_tests --> Frame buffer and clip tests.
+  - RA8889p_readPixels ---------> Tests color bar write and read accuracy with rotation.
   - TestDMA -------------------------> Another DMA test for displaying images.
   - TestDMA_FB --------------------> More ASYNC and DMA testing using frame buffer callbacks.
-  - writeRotatedRect_ra8876 ----> Displays images and color bars with rotation.
+  - writeRotatedRect_ra8889 ----> Displays images and color bars with rotation.
 - treedee -------------------------> Demonstrates a spinning 3D wire cube.
 - UserDefinedFonts -----------> Demonstrates loading  user define fonts into pattern ram.   Fonts can also be loaded from an SD card or USB drive.
 
@@ -264,12 +264,12 @@ They added functions to be compatible with other display libraries, performed a 
 
 # REFERENCES
 ER-TFTM-101-1 10.1" TFT from BuyDisplay:
-- https://www.buydisplay.com/serial-spi-i2c-10-1-inch-tft-lcd-module-dislay-w-ra8876-optl-touch-panel
-- https://www.buydisplay.com/download/ic/RA8876.pdf
+- https://www.buydisplay.com/serial-spi-i2c-10-1-inch-tft-lcd-module-dislay-w-ra8889-optl-touch-panel
+- https://www.buydisplay.com/download/ic/RA8889.pdf
 
 PJRC Forum Threads:
 - https://forum.pjrc.com/threads/58565-RA8876LiteTeensy-For-Teensy-T36-and-T40
 - https://forum.pjrc.com/index.php?threads/ra8876-parallel-display-library-testing.75345/
 - https://forum.pjrc.com/index.php?threads/recommendations-for-10-tft-display-with-touchscreen-for-teensy-4-1.75666/
 ***
-# This is WIP.   USE AT YOUR OWN RISK.  There are no guarantees when using this library. More to come.
+# This is WIP.   USE AT YOUR OWN RISK.  There are no guarantees when using this library. More to come. ***** MAYBE !! **********
