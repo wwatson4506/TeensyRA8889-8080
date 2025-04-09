@@ -1,0 +1,12 @@
+{
+	"name": "TeensyRA8889-8080",
+	"frameworks": "Arduino",
+	"platforms": "Teensy T41 MicroMod ",
+	"keywords": "RA8889_8080",
+	"description": "wwatson TeensyRA8889-8080 Library",
+	"version": "1.0.0",
+	"authors":
+	{	"name": "Warren Watson",
+		"maintainer": true
+	}
+}
