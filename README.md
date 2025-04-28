@@ -27,7 +27,7 @@ A minimal driver adapted from the arduino-goodix library can be found here:
 
 # PINOUTS
 
-### CONNECTING THE TEENSY TO THE ER-TFTM101-1 in FlexIO 8080 mode:
+### CONNECTING THE TEENSY TO THE ER-TFT101B4-1-6105 in FlexIO 8080 mode:
 40 pin dual inline connector pinouts for 8080 8/16Bit parallel buss mode can be found here:
 
 https://www.buydisplay.com/download/interfacing/ER-TFTM101-1_CTP_Interfacing.pdf
@@ -66,7 +66,7 @@ Power and Grounds
 - GND -----------------------> 1,2,13,31,39,40
 NOTE: All power and ground pins should be connected.
 
-Touch Screen (ER_TFTM101-1 40 pin dual inline connector)
+Touch Screen (ER-TFT101B4-1-6105 40 pin dual inline connector)
 Teensy 4.1               GT9371
 - 3.3V ---------------> CPT_/RST 36
 - 28   ---------------> CPT_INT  33
