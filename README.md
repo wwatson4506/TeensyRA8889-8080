@@ -263,7 +263,7 @@ They added functions to be compatible with other display libraries, performed a 
 ***
 
 # REFERENCES
-ER-TFTM-101-1 10.1" TFT from BuyDisplay:
+ER-TFT101B4-1-6105 10.1" TFT from BuyDisplay:
 - https://www.buydisplay.com/serial-spi-i2c-10-1-inch-tft-lcd-module-dislay-w-ra8889-optl-touch-panel
 - https://www.buydisplay.com/download/ic/RA8889.pdf
 
